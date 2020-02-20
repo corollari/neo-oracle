@@ -1,6 +1,6 @@
 const https = require("https")
 const { default: Neon, api, wallet, sc } = require("@cityofzion/neon-js")
-const PRIVATE_KEY = require("privateKey") // privateKey.js contains `module.exports = "mysupersecretkey"`
+const PRIVATE_KEY = require("./privateKey") // privateKey.js contains `module.exports = "mysupersecretkey"`
 
 const CONTRACT_SCRIPTHASH = "5b7074e873973a6ed3708862f219a6fbf4d1c411"
 const INTERVAL = 1 * // 1 day, note that the interval must be lower than 2147483647 (25 days) because javascript
@@ -16,9 +16,9 @@ async function updateOracle(){
 	const messari = (await getJSON("https://data.messari.io/api/v1/assets/bnb/metrics/market-data")).data.market_data.price_usd / (await getJSON("https://data.messari.io/api/v1/assets/neo/metrics/market-data")).data.market_data.price_usd
 	const binance = (await getJSON("https://api.binance.com/api/v3/ticker/24hr?symbol=BNBBTC")).weightedAvgPrice/(await getJSON("https://api.binance.com/api/v3/ticker/24hr?symbol=NEOBTC")).weightedAvgPrice // The USDT pairs have higher volume than the BTC ones but given that everythig else is based on USDT I decided to go with BTC here, also this is a 24hr average price, while the other prices are spot
 	const hitbtc = Number((await getJSON("https://api.hitbtc.com/api/2/public/ticker/NEOUSD")).last)/Number((await getJSON("https://api.hitbtc.com/api/2/public/ticker/BNBUSD")).last)
-	const bitfinex-gateio = (await getJSON("https://api-pub.bitfinex.com/v2/ticker/tNEOUSD"))[6]/(await getJSON("https://data.gateio.life/api2/1/ticker/bnb_usdt")).last
+	const bitfinex_gateio = (await getJSON("https://api-pub.bitfinex.com/v2/ticker/tNEOUSD"))[6]/(await getJSON("https://data.gateio.life/api2/1/ticker/bnb_usdt")).last
 
-	const medianPrice = [coingecko, messari, binance, hitbtc, bitfinex-gateio].sort()[2]
+	const medianPrice = [coingecko, messari, binance, hitbtc, bitfinex_gateio].sort()[2]
 
 	const sb = Neon.create.scriptBuilder()
 	// Your contract script hash, function name and parameters
