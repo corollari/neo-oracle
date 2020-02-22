@@ -1,6 +1,6 @@
 const https = require("https")
 const { default: Neon, api, wallet, sc } = require("@cityofzion/neon-js")
-const PRIVATE_KEY = require("./privateKey") // privateKey.js contains `module.exports = "mysupersecretkey"`
+const PRIVATE_KEY = process.env["PRIVATE_KEY"]
 
 const CONTRACT_SCRIPTHASH = "5b7074e873973a6ed3708862f219a6fbf4d1c411"
 

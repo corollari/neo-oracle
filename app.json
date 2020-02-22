@@ -1,0 +1,10 @@
+{
+  "name": "NEO Oracle",
+  "description": "Price oracle for NEO smart contracts",
+  "repository": "https://github.com/corollari/neo-oracle",
+  "env": {
+    "PRIVATE_KEY": {
+      "description": "Private key used in the oracle"
+    }
+  }
+}
