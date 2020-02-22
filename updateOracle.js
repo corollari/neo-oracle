@@ -3,13 +3,11 @@ const { default: Neon, api, wallet, sc } = require("@cityofzion/neon-js")
 const PRIVATE_KEY = require("./privateKey") // privateKey.js contains `module.exports = "mysupersecretkey"`
 
 const CONTRACT_SCRIPTHASH = "5b7074e873973a6ed3708862f219a6fbf4d1c411"
-const INTERVAL = 1 * // 1 day, note that the interval must be lower than 2147483647 (25 days) because javascript
-	24*60*60*1000// convert to milliseconds
-
-setInterval(updateOracle, INTERVAL)
 
 const apiProvider = new api.neoscan.instance("MainNet")
 const account = new wallet.Account(PRIVATE_KEY)
+
+module.exports = updateOracle
 
 async function updateOracle(){
 	const coingecko = (await getJSON("https://api.coingecko.com/api/v3/simple/price?ids=neo&vs_currencies=bnb")).neo.bnb
