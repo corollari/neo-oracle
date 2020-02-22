@@ -2,9 +2,9 @@
   "name": "neo-oracle",
   "version": "1.0.0",
   "description": "Price oracle for NEO smart contracts",
-  "main": "index.js",
+  "main": "updateOracle.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node updateOracle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/corollari/neo-oracle#readme",
   "dependencies": {
-    "@cityofzion/neon-js": "^4.7.2"
+    "@cityofzion/neon-js": "^4.7.2",
+    "cron": "^1.8.2"
   }
 }
