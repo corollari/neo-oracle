@@ -2,7 +2,7 @@ const https = require("https")
 const { default: Neon, api, wallet, sc } = require("@cityofzion/neon-js")
 const PRIVATE_KEY = process.env["PRIVATE_KEY"]
 
-const CONTRACT_SCRIPTHASH = "5b7074e873973a6ed3708862f219a6fbf4d1c411"
+const CONTRACT_SCRIPTHASH = process.env["CONTRACT_SCRIPTHASH"]
 
 const apiProvider = new api.neoscan.instance("MainNet")
 const account = new wallet.Account(PRIVATE_KEY)
@@ -31,7 +31,7 @@ async function updateOracle(){
 		script: script, // The Smart Contract invocation script
 		gas: 0, // Optional, system fee
 		fees: 0 // Optional, network fee
-	};
+	}
 
 	// Neon API
 	await Neon.doInvoke(config)

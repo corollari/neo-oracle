@@ -5,6 +5,9 @@
   "env": {
     "PRIVATE_KEY": {
       "description": "Private key used in the oracle"
+    },
+    "CONTRACT_SCRIPTHASH": {
+      "description": "Scripthash of the deployed contract"
     }
   }
 }
