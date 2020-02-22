@@ -3,8 +3,8 @@
 
 ## Set up
 1. Create a private key with any NEO wallet (eg: [ansy](https://snowypowers.github.io/ansy/))
-2. Compute the address associated with the private key you just created with [ansy](https://snowypowers.github.io/ansy/) or neon-js
-3. Update the variable `Owner` in `Oracle.cs` to use the address you just computed instead of the one that is hardcoded
+2. Compute the ScriptHash associated with the private key you just created, you can use neon-js
+3. Update the variable `Owner` in `Oracle.cs` to use the ScriptHash you just computed instead of the one that is hardcoded
 4. Publish the contract `Oracle.cs` (or a contract that implements the same interface) on a blockchain
 5. Install the dependencies with `npm install`
 
