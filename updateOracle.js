@@ -16,7 +16,9 @@ async function updateOracle(){
 	const hitbtc = Number((await getJSON("https://api.hitbtc.com/api/2/public/ticker/NEOUSD")).last)/Number((await getJSON("https://api.hitbtc.com/api/2/public/ticker/BNBUSD")).last)
 	const bitfinex_gateio = (await getJSON("https://api-pub.bitfinex.com/v2/ticker/tNEOUSD"))[6]/(await getJSON("https://data.gateio.life/api2/1/ticker/bnb_usdt")).last
 
-	const medianPrice = [coingecko, messari, binance, hitbtc, bitfinex_gateio].sort()[2]
+	let medianPrice = [coingecko, messari, binance, hitbtc, bitfinex_gateio].sort()[2]
+
+	medianPrice = Math.round(medianPrice*(10**8)) // Convert to BigInt, assume NEP5 decimals = 8
 
 	const sb = Neon.create.scriptBuilder()
 	// Your contract script hash, function name and parameters
