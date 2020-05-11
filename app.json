@@ -8,6 +8,9 @@
     },
     "CONTRACT_SCRIPTHASH": {
       "description": "Scripthash of the deployed contract"
+    },
+    "BNC_TICKER": {
+      "description": "Ticker of the BEP2 token on Binance Chain"
     }
   }
 }

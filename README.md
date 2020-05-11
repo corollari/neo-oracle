@@ -12,7 +12,8 @@
 ```bash
 PRIVATE_KEY="9ab7e154840daca3a2efadaf0df93cd3a5b51768c632f5433f86909d9b994a69" # Replace with the private key you generated during setup
 CONTRACT_SCRIPTHASH="5b7074e873973a6ed3708862f219a6fbf4d1c411" # Replace with the scripthash of the contract you deployed
-export PRIVATE_KEY CONTRACT_SCRIPTHASH
+BNC_TICKER="BNB_BTCB-1DE" # Replace with the Binance Chain ticker of the BEP2 token that the oracle needs to serve
+export PRIVATE_KEY CONTRACT_SCRIPTHASH BNC_TICKER
 node clock.js
 ```
 
