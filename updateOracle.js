@@ -9,7 +9,7 @@ const account = new wallet.Account(PRIVATE_KEY)
 
 module.exports = updateOracle
 
-async function updateOracle(){
+async function getPrice(){
 	const coingecko = (await getJSON("https://api.coingecko.com/api/v3/simple/price?ids=neo&vs_currencies=bnb")).neo.bnb
 	const messari = (await getJSON("https://data.messari.io/api/v1/assets/bnb/metrics/market-data")).data.market_data.price_usd / (await getJSON("https://data.messari.io/api/v1/assets/neo/metrics/market-data")).data.market_data.price_usd
 	const binance = (await getJSON("https://api.binance.com/api/v3/ticker/24hr?symbol=BNBBTC")).weightedAvgPrice/(await getJSON("https://api.binance.com/api/v3/ticker/24hr?symbol=NEOBTC")).weightedAvgPrice // The USDT pairs have higher volume than the BTC ones but given that everythig else is based on USDT I decided to go with BTC here, also this is a 24hr average price, while the other prices are spot
@@ -18,7 +18,11 @@ async function updateOracle(){
 
 	let medianPrice = [coingecko, messari, binance, hitbtc, bitfinex_gateio].sort()[2]
 
-	medianPrice = Math.round(medianPrice*(10**8)) // Convert to BigInt, assume NEP5 decimals = 8
+	return Math.round(medianPrice*(10**8)) // Convert to BigInt, assume NEP5 decimals = 8
+}
+
+async function updateOracle(){
+  const price = await getPrice()
 
 	const sb = Neon.create.scriptBuilder()
 	// Your contract script hash, function name and parameters
@@ -39,6 +43,7 @@ async function updateOracle(){
 	await Neon.doInvoke(config)
 }
 
+// Basic implementation of simple fetch()
 function getJSON(url){
 	return new Promise((resolve, reject) => {
 		let output = ''
