@@ -1,5 +1,5 @@
 const { CronJob } = require('cron');
-const updateOracle = require('./updateOracle');
+const { updateOracle } = require('./updateOracle');
 
 const job = new CronJob({
   cronTime: '0 0 8 * * *', // Run daily at 8am

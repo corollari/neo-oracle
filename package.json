@@ -4,7 +4,9 @@
   "description": "Price oracle for NEO smart contracts",
   "main": "updateOracle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "lint": "eslint --fix *.js",
+    "checklint": "eslint *.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +21,8 @@
   "dependencies": {
     "@cityofzion/neon-js": "^4.7.2",
     "cron": "^1.8.2",
-    "jest": "^26.0.1"
+    "jest": "^26.0.1",
+    "node-fetch": "^2.6.0"
   },
   "engines": {
     "node": "11.x"

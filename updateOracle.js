@@ -1,7 +1,7 @@
 const {
   default: Neon, api, wallet,
 } = require('@cityofzion/neon-js');
-const getJSON = require('./getJSON');
+const fetch = require('node-fetch');
 
 const { PRIVATE_KEY } = process.env;
 
@@ -9,6 +9,10 @@ const { CONTRACT_SCRIPTHASH } = process.env;
 
 const apiProvider = new api.neoscan.instance('MainNet');
 const account = new wallet.Account(PRIVATE_KEY);
+
+async function getJSON(url) {
+  return fetch(url).then((res) => res.json());
+}
 
 async function getPrice() {
   const coingecko = (await getJSON('https://api.coingecko.com/api/v3/simple/price?ids=neo&vs_currencies=bnb')).neo.bnb;
@@ -19,6 +23,7 @@ async function getPrice() {
 
   const medianPrice = [coingecko, messari, binance, hitbtc, bitfinexGateio].sort()[2];
 
+  // The max safe integer in javascript is 9007199254740991, which is a number that should never be reached by a price (even if it is multiplied by 10**8), and, in case it is, the precision lost should be pretty small
   return Math.round(medianPrice * (10 ** 8)); // Convert to BigInt, assume NEP5 decimals = 8
 }
 
@@ -44,4 +49,4 @@ async function updateOracle() {
   await Neon.doInvoke(config);
 }
 
-module.exports = updateOracle;
+module.exports = { updateOracle, getPrice };
