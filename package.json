@@ -18,9 +18,15 @@
   "homepage": "https://github.com/corollari/neo-oracle#readme",
   "dependencies": {
     "@cityofzion/neon-js": "^4.7.2",
-    "cron": "^1.8.2"
+    "cron": "^1.8.2",
+    "jest": "^26.0.1"
   },
   "engines": {
     "node": "11.x"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
   }
 }
