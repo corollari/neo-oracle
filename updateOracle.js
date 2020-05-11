@@ -16,8 +16,8 @@ async function getJSON(url) {
 
 async function getPrice() {
   const coingecko = (await getJSON('https://api.coingecko.com/api/v3/simple/price?ids=neo&vs_currencies=bnb')).neo.bnb;
-  const messari = (await getJSON('https://data.messari.io/api/v1/assets/bnb/metrics/market-data')).data.market_data.price_usd / (await getJSON('https://data.messari.io/api/v1/assets/neo/metrics/market-data')).data.market_data.price_usd;
-  const binance = (await getJSON('https://api.binance.com/api/v3/ticker/24hr?symbol=BNBBTC')).weightedAvgPrice / (await getJSON('https://api.binance.com/api/v3/ticker/24hr?symbol=NEOBTC')).weightedAvgPrice; // The USDT pairs have higher volume than the BTC ones but given that everythig else is based on USDT I decided to go with BTC here, also this is a 24hr average price, while the other prices are spot
+  const messari = (await getJSON('https://data.messari.io/api/v1/assets/neo/metrics/market-data')).data.market_data.price_usd / (await getJSON('https://data.messari.io/api/v1/assets/bnb/metrics/market-data')).data.market_data.price_usd; 
+  const binance = (await getJSON('https://api.binance.com/api/v3/ticker/24hr?symbol=NEOBTC')).weightedAvgPrice / (await getJSON('https://api.binance.com/api/v3/ticker/24hr?symbol=BNBBTC')).weightedAvgPrice // The USDT pairs have higher volume than the BTC ones but given that everythig else is based on USDT I decided to go with BTC here, also this is a 24hr average price, while the other prices are spot, again just trying to balance things out
   const hitbtc = Number((await getJSON('https://api.hitbtc.com/api/2/public/ticker/NEOUSD')).last) / Number((await getJSON('https://api.hitbtc.com/api/2/public/ticker/BNBUSD')).last);
   const bitfinexGateio = (await getJSON('https://api-pub.bitfinex.com/v2/ticker/tNEOUSD'))[6] / (await getJSON('https://data.gateio.life/api2/1/ticker/bnb_usdt')).last;
 
