@@ -19,3 +19,9 @@ node clock.js
 
 ## Deploy
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+## Development
+```bash
+npm run lint # Lint code
+npm test # Run tests
+```
