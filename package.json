@@ -21,7 +21,7 @@
   "dependencies": {
     "@cityofzion/neon-js": "^4.7.2",
     "cron": "^1.8.2",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.7"
   },
   "engines": {
     "node": "11.x"
